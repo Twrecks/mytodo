@@ -98,7 +98,7 @@ class Account extends Controller {
 	}
 	
 	function register() {
-		$this->form_validation->set_rules('username', 'Username', 'xss_clean|required');
+		$this->form_validation->set_rules('username', 'Username', 'xss_clean|required|callback_user_exists');
 		$this->form_validation->set_rules('email', 'Email Address', 'xss_clean|required|valid_email|callback_email_exists');
 		$this->form_validation->set_rules('name', 'Name', 'xss_clean|required');
 		$this->form_validation->set_rules('password', 'Password', 'xss_clean|required|min_length[4]|max_length[12]');
