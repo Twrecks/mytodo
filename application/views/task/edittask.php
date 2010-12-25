@@ -40,7 +40,7 @@
 				<?php if(count($files) >= 1) {
 					foreach($files as $file) 
 					{
-						echo "<span class=\"file_wrap\"><a href=\"http://localhost/todo/uploads/$file->file_name\"><img src=\"http://localhost/todo/uploads/thumbs/$file->file_name\" /></a>\n";
+						echo "<span class=\"file_wrap\"><a href=\"http://localhost/todo/uploads/$file->file_name\" rel=\"img\" class=\"lightbox\" ><img src=\"http://localhost/todo/uploads/thumbs/$file->file_name\" /></a>\n";
 						echo "<a href=\"http://localhost/todo/task/delete_file/$file->file_name\" onclick=\"return confirm('Are you sure you want to delete this file?');\"><img src=\"http://localhost/todo/images/delete-icn.png\" alt=\"delete\" title=\"delete\"/></a></span>\n";
 					}
 				}
