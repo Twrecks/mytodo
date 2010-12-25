@@ -26,7 +26,7 @@ class Account extends Controller {
 			
 			$this->load->library('pagination');
 			$config['base_url'] = site_url('account/dashboard');
-			$config['total_rows'] = $this->db->get_where('tasks', array('user_id' => $id))->num_rows();
+			$config['total_rows'] = $this->task_model->count_where('user_id', $id);
 			$config['per_page'] = 3;
 			$config['num_links'] = 2;
 			$config['full_tag_open'] = '<div id="pagination">';
@@ -36,7 +36,8 @@ class Account extends Controller {
 			$data['tasks'] = $this->task_model->get_user_tasks($id, $config['per_page'], $this->uri->segment(3));
 			$this->load->view('account/dashboard', $data);
 		} else {
-			$this->load->view('account/details');
+			$this->session->set_flashdata('msg', "<div class=\"alert_warning alert\">You must be logged in to access</div>");
+			redirect('account/login');
 		}
 	}
 	
@@ -87,7 +88,7 @@ class Account extends Controller {
 		
 		if($query->num_rows() == 0) 
 		{
-			$this->form_validation->set_message('password_check', 'There was an error, Please try another password');
+			$this->form_validation->set_message('password_check', "There was an error, Please try another password");
 			return FALSE;
 		}else {
 			if($result['password'] == $this->_password)

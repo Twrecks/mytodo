@@ -14,6 +14,14 @@ class Task_model extends Model {
 		return $query->result();
 	}
 	
+	function count() {
+		return $this->db->get('tasks')->num_rows(); 
+	}
+	
+	function count_where($field, $value) {
+		return $this->db->get_where('tasks', array($field => $value))->num_rows();
+	}
+	
 	function get_user_tasks($id, $limit, $offset) {
 		$this->db->select('id, title, details')->where('user_id', $id)->order_by("tasks.id", "desc");
 		$query = $this->db->get('tasks',$limit, $offset);	

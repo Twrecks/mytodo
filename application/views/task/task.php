@@ -18,7 +18,7 @@
 			<? if(count($files) >= 1) :?>
 				<h3>Files:</h3>
 				<? foreach($files as $file) :?>
-					<a href="http://localhost/todo/uploads/<?= $file->file_name; ?>"><img src="http://localhost/todo/uploads/thumbs/<?= $file->file_name; ?>" /></a>
+					<a href="http://localhost/todo/uploads/<?= $file->file_name; ?>" rel="img" class="lightbox"><img src="http://localhost/todo/uploads/thumbs/<?= $file->file_name; ?>" /></a>
 				<? endforeach; ?>
 			<? endif; ?>
 
